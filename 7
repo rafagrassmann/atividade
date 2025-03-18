@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+
+// Função recursiva para inverter uma string
+void inverteString(char *str, int inicio, int fim) {
+    // Caso base: se início >= fim, não há mais trocas a fazer
+    if (inicio >= fim) {
+        return;
+    }
+    
+    // Troca os caracteres nas posições inicio e fim
+    char temp = str[inicio];
+    str[inicio] = str[fim];
+    str[fim] = temp;
+    
+    // Chamada recursiva com os próximos caracteres
+    inverteString(str, inicio + 1, fim - 1);
+}
+
+int main() {
+    char str[100]; // Buffer para a string
+    
+    // Solicita entrada do usuário
+    printf("Digite uma string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    // Remove o '\n' do final, se existir
+    if (str[strlen(str) - 1] == '\n') {
+        str[strlen(str) - 1] = '\0';
+    }
+    
+    // Calcula o comprimento da string
+    int comprimento = strlen(str);
+    
+    // Chama a função recursiva
+    inverteString(str, 0, comprimento - 1);
+    
+    // Exibe o resultado
+    printf("String invertida: %s\n", str);
+    
+    return 0;
+}
