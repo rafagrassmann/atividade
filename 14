@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+
+
+void decimalParaBinario(int n, char *binario, int pos) {
+
+    if (n == 0 && pos == 0) {
+        binario[pos] = '0';  // Caso especial para n = 0
+        binario[pos + 1] = '\0';
+        return;
+    }
+    if (n == 0) {
+        binario[pos] = '\0';  // Adiciona terminador quando n chega a 0
+        return;
+    }
+    
+    // Calcula o dígito binário atual (0 ou 1)
+    binario[pos] = (n % 2) + '0';  // Converte int para char ('0' ou '1')
+    
+    // Chama recursivamente com o quociente
+    decimalParaBinario(n / 2, binario, pos + 1);
+}
+
+int main() {
+    int numero;
+    char binario[32];  // Buffer para a string binária (32 bits no máximo)
+    
+    // Solicita entrada do usuário
+    printf("Digite um número inteiro não negativo: ");
+    scanf("%d", &numero);
+    
+    // Verifica se o número é não negativo
+    if (numero < 0) {
+        printf("Por favor, digite um número não negativo!\n");
+    } else {
+        // Converte para binário
+        decimalParaBinario(numero, binario, 0);
+        
+        
+        int tamanho = strlen(binario);
+        char binarioInvertido[32];
+        
+        // Inverte a string para a ordem correta
+        for (int i = 0; i < tamanho; i++) {
+            binarioInvertido[i] = binario[tamanho - 1 - i];
+        }
+        binarioInvertido[tamanho] = '\0';
+        
+        // Exibe o resultado
+        printf("A representação binária de %d é: %s\n", numero, binarioInvertido);
+    }
+    
+    return 0;
+}
