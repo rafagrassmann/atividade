@@ -1,0 +1,70 @@
+c
+
+Recolher
+
+Encapsular
+
+Copiar
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Função auxiliar para converter caractere para minúsculo
+char toLower(char c) {
+    if (c >= 'A' && c <= 'Z') {
+        return c + 32;
+    }
+    return c;
+}
+
+// Função recursiva para verificar se é palíndromo
+int ehPalindromo(char *str, int inicio, int fim) {
+    // Caso base: se os índices se cruzarem ou se encontrarem
+    if (inicio >= fim) {
+        return 1; // Verdadeiro
+    }
+    
+    // Ignora caracteres não alfanuméricos
+    while (inicio < fim && !isalnum(str[inicio])) {
+        inicio++;
+    }
+    while (inicio < fim && !isalnum(str[fim])) {
+        fim--;
+    }
+    
+    // Se os caracteres diferirem (em minúsculo), não é palíndromo
+    if (toLower(str[inicio]) != toLower(str[fim])) {
+        return 0; // Falso
+    }
+    
+    // Chamada recursiva com os próximos caracteres
+    return ehPalindromo(str, inicio + 1, fim - 1);
+}
+
+int main() {
+    char str[100]; // Buffer para a string
+    
+    // Solicita entrada do usuário
+    printf("Digite uma string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    // Remove o '\n' do final, se existir
+    if (str[strlen(str) - 1] == '\n') {
+        str[strlen(str) - 1] = '\0';
+    }
+    
+    // Calcula o comprimento da string
+    int comprimento = strlen(str);
+    
+    // Verifica se é palíndromo
+    int resultado = ehPalindromo(str, 0, comprimento - 1);
+    
+    // Exibe o resultado
+    if (resultado) {
+        printf("\"%s\" é um palíndromo!\n", str);
+    } else {
+        printf("\"%s\" não é um palíndromo.\n", str);
+    }
+    
+    return 0;
+}
