@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+void contagem_regressiva(int n) {
+    // Caso base: quando chega a 0, imprime e para
+    if (n < 0) {
+        return;
+    }
+    
+    // Imprime o número atual
+    printf("%d\n", n);
+    
+    // Chamada recursiva com n-1
+    contagem_regressiva(n - 1);
+}
+
+// Exemplo de uso
+int main() {
+    int numero = 5;
+    printf("Contagem regressiva a partir de %d:\n", numero);
+    contagem_regressiva(numero);
+    return 0;
+}
