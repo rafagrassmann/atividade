@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+// Função recursiva para calcular a soma dos primeiros n números naturais
+int soma_n(int n) {
+    // Caso base: soma de 0 ou 1 números é 0 ou o próprio número
+    if (n == 0) {
+        return 0;
+    } else if (n == 1) {
+        return 1;
+    }
+    // Caso recursivo: soma de n números é n + soma de (n-1) números
+    else {
+        return n + soma_n(n-1);
+    }
+}
+
+int main() {
+    int n;
+    printf("Digite um número natural: ");
+    scanf("%d", &n);
+
+    if (n < 0) {
+        printf("Erro: número negativo!\n");
+    } else {
+        int resultado = soma_n(n);
+        printf("Soma dos primeiros %d números naturais: %d\n", n, resultado);
+    }
+
+    return 0;
+}
