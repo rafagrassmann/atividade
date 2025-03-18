@@ -1,0 +1,39 @@
+Aqui está uma implementação em C de uma função recursiva que calcula a soma dos dígitos de um número inteiro positivo:
+
+c
+
+Recolher
+
+Encapsular
+
+Copiar
+#include <stdio.h>
+
+// Função recursiva para somar os dígitos
+int somaDigitos(int n) {
+    // Caso base: se o número for menor que 10, retorna ele mesmo
+    if (n < 10) {
+        return n;
+    }
+    // Caso recursivo: soma o último dígito com a soma dos demais
+    return (n % 10) + somaDigitos(n / 10);
+}
+
+int main() {
+    int numero;
+    
+    // Solicita entrada do usuário
+    printf("Digite um número inteiro positivo: ");
+    scanf("%d", &numero);
+    
+    // Verifica se o número é positivo
+    if (numero < 0) {
+        printf("Por favor, digite um número positivo!\n");
+    } else {
+        // Calcula e exibe o resultado
+        int resultado = somaDigitos(numero);
+        printf("A soma dos dígitos de %d é %d\n", numero, resultado);
+    }
+    
+    return 0;
+}
