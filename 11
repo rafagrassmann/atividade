@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+// Função recursiva para contar ocorrências de um caractere
+int contaCaractere(char *str, char c, int pos) {
+    // Caso base: se chegamos ao fim da string ('\0'), retorna 0
+    if (str[pos] == '\0') {
+        return 0;
+    }
+    
+    // Verifica se o caractere atual é o procurado e soma com a contagem do resto
+    int atual = (str[pos] == c) ? 1 : 0;
+    return atual + contaCaractere(str, c, pos + 1);
+}
+
+int main() {
+    char str[100];  // Buffer para a string
+    char c;         // Caractere a ser procurado
+    
+    // Solicita entrada do usuário
+    printf("Digite uma string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    // Remove o '\n' do final, se existir
+    if (str[strlen(str) - 1] == '\n') {
+        str[strlen(str) - 1] = '\0';
+    }
+    
+    printf("Digite o caractere a ser contado: ");
+    scanf(" %c", &c);  // O espaço antes de %c consome qualquer newline pendente
+    
+    // Calcula e exibe o resultado
+    int resultado = contaCaractere(str, c, 0);
+    printf("O caractere '%c' aparece %d vezes na string \"%s\"\n", c, resultado, str);
+    
+    return 0;
+}
